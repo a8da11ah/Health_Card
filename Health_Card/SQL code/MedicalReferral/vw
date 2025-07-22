@@ -1,0 +1,11 @@
+﻿CREATE VIEW vwMedicalReferrals AS
+SELECT
+    ReferralID,
+    ServantID,
+    ReferralDate,
+    MedicalDiagnosis,
+    LeaveType,
+    LeaveDays,
+    CreatedAt
+FROM MedicalReferrals;
+GO

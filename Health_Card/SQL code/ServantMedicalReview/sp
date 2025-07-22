@@ -1,0 +1,84 @@
+﻿CREATE PROCEDURE spGetServantMedicalReviewById
+    @ReviewID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        ReviewID,
+        ServantID,
+        ReviewDate,
+        ReviewType,
+        MedicalDiagnosis,
+        Notes,
+        CreatedAt
+    FROM ServantMedicalReviews
+    WHERE ReviewID = @ReviewID;
+END
+GO
+
+CREATE PROCEDURE spCreateServantMedicalReview
+    @ServantID INT,
+    @ReviewDate DATE,
+    @ReviewType NVARCHAR(100) = NULL,
+    @MedicalDiagnosis NVARCHAR(MAX) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO ServantMedicalReviews
+    (
+        ServantID,
+        ReviewDate,
+        ReviewType,
+        MedicalDiagnosis,
+        Notes,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @ReviewDate,
+        @ReviewType,
+        @MedicalDiagnosis,
+        @Notes,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS ReviewID;
+END
+GO
+
+CREATE PROCEDURE spUpdateServantMedicalReview
+    @ReviewID INT,
+    @ServantID INT,
+    @ReviewDate DATE,
+    @ReviewType NVARCHAR(100) = NULL,
+    @MedicalDiagnosis NVARCHAR(MAX) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE ServantMedicalReviews
+    SET
+        ServantID = @ServantID,
+        ReviewDate = @ReviewDate,
+        ReviewType = @ReviewType,
+        MedicalDiagnosis = @MedicalDiagnosis,
+        Notes = @Notes
+    WHERE ReviewID = @ReviewID;
+END
+GO
+
+CREATE PROCEDURE spDeleteServantMedicalReview
+    @ReviewID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM ServantMedicalReviews
+    WHERE ReviewID = @ReviewID;
+END
+GO

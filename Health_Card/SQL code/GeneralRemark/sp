@@ -1,0 +1,78 @@
+﻿CREATE PROCEDURE spGetGeneralRemarkById
+    @RemarkID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        RemarkID,
+        ServantID,
+        Remarks,
+        OtherNotes,
+        CreatedBy,
+        CreatedAt
+    FROM GeneralRemarks
+    WHERE RemarkID = @RemarkID;
+END
+GO
+
+CREATE PROCEDURE spCreateGeneralRemark
+    @ServantID INT,
+    @Remarks NVARCHAR(MAX) = NULL,
+    @OtherNotes NVARCHAR(MAX) = NULL,
+    @CreatedBy NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO GeneralRemarks
+    (
+        ServantID,
+        Remarks,
+        OtherNotes,
+        CreatedBy,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @Remarks,
+        @OtherNotes,
+        @CreatedBy,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS RemarkID;
+END
+GO
+
+CREATE PROCEDURE spUpdateGeneralRemark
+    @RemarkID INT,
+    @ServantID INT,
+    @Remarks NVARCHAR(MAX) = NULL,
+    @OtherNotes NVARCHAR(MAX) = NULL,
+    @CreatedBy NVARCHAR(255) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE GeneralRemarks
+    SET
+        ServantID = @ServantID,
+        Remarks = @Remarks,
+        OtherNotes = @OtherNotes,
+        CreatedBy = @CreatedBy
+    WHERE RemarkID = @RemarkID;
+END
+GO
+
+CREATE PROCEDURE spDeleteGeneralRemark
+    @RemarkID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM GeneralRemarks
+    WHERE RemarkID = @RemarkID;
+END
+GO

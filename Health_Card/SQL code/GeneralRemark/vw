@@ -1,0 +1,10 @@
+﻿CREATE VIEW vwGeneralRemarks AS
+SELECT
+    RemarkID,
+    ServantID,
+    Remarks,
+    OtherNotes,
+    CreatedBy,
+    CreatedAt
+FROM GeneralRemarks;
+GO

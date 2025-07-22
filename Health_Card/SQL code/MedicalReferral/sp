@@ -1,0 +1,84 @@
+﻿CREATE PROCEDURE spGetMedicalReferralById
+    @ReferralID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        ReferralID,
+        ServantID,
+        ReferralDate,
+        MedicalDiagnosis,
+        LeaveType,
+        LeaveDays,
+        CreatedAt
+    FROM MedicalReferrals
+    WHERE ReferralID = @ReferralID;
+END
+GO
+
+CREATE PROCEDURE spCreateMedicalReferral
+    @ServantID INT,
+    @ReferralDate DATE, -- Assuming DATE type for date-only field
+    @MedicalDiagnosis NVARCHAR(MAX), -- Assuming string without length means MAX
+    @LeaveType NVARCHAR(255) = NULL,
+    @LeaveDays INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO MedicalReferrals
+    (
+        ServantID,
+        ReferralDate,
+        MedicalDiagnosis,
+        LeaveType,
+        LeaveDays,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @ReferralDate,
+        @MedicalDiagnosis,
+        @LeaveType,
+        @LeaveDays,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS ReferralID;
+END
+GO
+
+CREATE PROCEDURE spUpdateMedicalReferral
+    @ReferralID INT,
+    @ServantID INT,
+    @ReferralDate DATE,
+    @MedicalDiagnosis NVARCHAR(MAX),
+    @LeaveType NVARCHAR(255) = NULL,
+    @LeaveDays INT = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE MedicalReferrals
+    SET
+        ServantID = @ServantID,
+        ReferralDate = @ReferralDate,
+        MedicalDiagnosis = @MedicalDiagnosis,
+        LeaveType = @LeaveType,
+        LeaveDays = @LeaveDays
+    WHERE ReferralID = @ReferralID;
+END
+GO
+
+CREATE PROCEDURE spDeleteMedicalReferral
+    @ReferralID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM MedicalReferrals
+    WHERE ReferralID = @ReferralID;
+END
+GO

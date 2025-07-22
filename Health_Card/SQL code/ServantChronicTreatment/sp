@@ -1,0 +1,72 @@
+﻿CREATE PROCEDURE spGetServantChronicTreatmentById
+    @TreatmentID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        TreatmentID,
+        ServantID,
+        TreatmentName,
+        Notes,
+        CreatedAt
+    FROM ServantChronicTreatments
+    WHERE TreatmentID = @TreatmentID;
+END
+GO
+
+CREATE PROCEDURE spCreateServantChronicTreatment
+    @ServantID INT,
+    @TreatmentName NVARCHAR(255),
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO ServantChronicTreatments
+    (
+        ServantID,
+        TreatmentName,
+        Notes,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @TreatmentName,
+        @Notes,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS TreatmentID;
+END
+GO
+
+CREATE PROCEDURE spUpdateServantChronicTreatment
+    @TreatmentID INT,
+    @ServantID INT,
+    @TreatmentName NVARCHAR(255),
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE ServantChronicTreatments
+    SET
+        ServantID = @ServantID,
+        TreatmentName = @TreatmentName,
+        Notes = @Notes
+    WHERE TreatmentID = @TreatmentID;
+END
+GO
+
+CREATE PROCEDURE spDeleteServantChronicTreatment
+    @TreatmentID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM ServantChronicTreatments
+    WHERE TreatmentID = @TreatmentID;
+END
+GO

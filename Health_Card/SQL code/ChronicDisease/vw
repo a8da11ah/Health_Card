@@ -1,0 +1,11 @@
+﻿CREATE VIEW vwChronicDiseases AS
+SELECT
+    ChronicDiseaseID,
+    ServantID,
+    DiseaseName,
+    Notes,
+    DiseaseType,
+    FamilyMemberRelation,
+    CreatedAt
+FROM ChronicDiseases;
+GO

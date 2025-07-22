@@ -1,0 +1,84 @@
+CREATE PROCEDURE spGetWorkInjuryById
+    @InjuryID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        InjuryID,
+        ServantID,
+        InjuryDate,
+        InjuryType,
+        DepartmentOfInjury,
+        Description,
+        CreatedAt
+    FROM WorkInjuries
+    WHERE InjuryID = @InjuryID;
+END
+GO
+
+CREATE PROCEDURE spCreateWorkInjury
+    @ServantID INT,
+    @InjuryDate DATE,
+    @InjuryType NVARCHAR(255),
+    @DepartmentOfInjury NVARCHAR(255) = NULL,
+    @Description NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO WorkInjuries
+    (
+        ServantID,
+        InjuryDate,
+        InjuryType,
+        DepartmentOfInjury,
+        Description,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @InjuryDate,
+        @InjuryType,
+        @DepartmentOfInjury,
+        @Description,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS InjuryID;
+END
+GO
+
+CREATE PROCEDURE spUpdateWorkInjury
+    @InjuryID INT,
+    @ServantID INT,
+    @InjuryDate DATE,
+    @InjuryType NVARCHAR(255),
+    @DepartmentOfInjury NVARCHAR(255) = NULL,
+    @Description NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE WorkInjuries
+    SET
+        ServantID = @ServantID,
+        InjuryDate = @InjuryDate,
+        InjuryType = @InjuryType,
+        DepartmentOfInjury = @DepartmentOfInjury,
+        Description = @Description
+    WHERE InjuryID = @InjuryID;
+END
+GO
+
+CREATE PROCEDURE spDeleteWorkInjury
+    @InjuryID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM WorkInjuries
+    WHERE InjuryID = @InjuryID;
+END
+GO

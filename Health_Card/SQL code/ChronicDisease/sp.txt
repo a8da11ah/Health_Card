@@ -1,0 +1,84 @@
+﻿CREATE PROCEDURE spGetChronicDiseaseById
+@ChronicDiseaseID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        ChronicDiseaseID,
+        ServantID,
+        DiseaseName,
+        Notes,
+        DiseaseType,
+        FamilyMemberRelation,
+        CreatedAt
+    FROM ChronicDiseases
+    WHERE ChronicDiseaseID = @ChronicDiseaseID;
+END
+GO
+
+CREATE PROCEDURE spCreateChronicDisease
+    @ServantID INT,
+    @DiseaseName NVARCHAR(255),
+    @Notes NVARCHAR(MAX) = NULL,
+    @DiseaseType INT = 0, -- default PERSONAL
+    @FamilyMemberRelation NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO ChronicDiseases
+    (
+        ServantID,
+        DiseaseName,
+        Notes,
+        DiseaseType,
+        FamilyMemberRelation,
+        CreatedAt
+    )
+    VALUES
+        (
+            @ServantID,
+            @DiseaseName,
+            @Notes,
+            @DiseaseType,
+            @FamilyMemberRelation,
+            SYSUTCDATETIME()
+        );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS ChronicDiseaseID;
+END
+GO
+
+CREATE PROCEDURE spUpdateChronicDisease
+    @ChronicDiseaseID INT,
+    @ServantID INT,
+    @DiseaseName NVARCHAR(255),
+    @Notes NVARCHAR(MAX) = NULL,
+    @DiseaseType INT,
+    @FamilyMemberRelation NVARCHAR(100) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE ChronicDiseases
+    SET
+        ServantID = @ServantID,
+        DiseaseName = @DiseaseName,
+        Notes = @Notes,
+        DiseaseType = @DiseaseType,
+        FamilyMemberRelation = @FamilyMemberRelation
+    WHERE ChronicDiseaseID = @ChronicDiseaseID;
+END
+GO
+
+CREATE PROCEDURE spDeleteChronicDisease
+@ChronicDiseaseID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM ChronicDiseases
+    WHERE ChronicDiseaseID = @ChronicDiseaseID;
+END
+GO

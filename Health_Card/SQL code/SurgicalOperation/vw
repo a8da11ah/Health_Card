@@ -1,0 +1,11 @@
+CREATE VIEW vwSurgicalOperations AS
+SELECT
+    OperationID,
+    ServantID,
+    OperationDate,
+    OperationType,
+    HospitalName,
+    Notes,
+    CreatedAt
+FROM SurgicalOperations;
+GO

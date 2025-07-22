@@ -1,0 +1,109 @@
+﻿    CREATE PROCEDURE spGetServantById
+        @ServantID INT
+    AS
+    BEGIN
+        SET NOCOUNT ON;
+    
+        SELECT
+            ServantID,
+            BirthDate,
+            Gender,
+            MaritalStatus,
+            BloodType,
+            Height,
+            Weight,
+            EducationalQualification,
+            SmokingStatus,
+            DrugAllergies,
+            CreatedAt,
+            UpdatedAt
+        FROM Servants
+        WHERE ServantID = @ServantID;
+    END
+    GO      
+    
+    CREATE PROCEDURE spCreateServant
+        @BirthDate DATE = NULL,
+        @Gender NVARCHAR(50) = NULL,
+        @MaritalStatus NVARCHAR(50) = NULL,
+        @BloodType NVARCHAR(10) = NULL,
+        @Height DECIMAL(5,2) = NULL,
+        @Weight DECIMAL(5,2) = NULL,
+        @EducationalQualification NVARCHAR(255) = NULL,
+        @SmokingStatus BIT = 0,
+        @DrugAllergies NVARCHAR(MAX) = NULL
+    AS
+    BEGIN
+        SET NOCOUNT ON;
+    
+        INSERT INTO Servants
+        (
+            BirthDate,
+            Gender,
+            MaritalStatus,
+            BloodType,
+            Height,
+            Weight,
+            EducationalQualification,
+            SmokingStatus,
+            DrugAllergies,
+            CreatedAt,
+            UpdatedAt
+        )
+        VALUES
+        (
+            @BirthDate,
+            @Gender,
+            @MaritalStatus,
+            @BloodType,
+            @Height,
+            @Weight,
+            @EducationalQualification,
+            @SmokingStatus,
+            @DrugAllergies,
+            SYSUTCDATETIME(),
+            SYSUTCDATETIME()
+        );
+    
+        SELECT CAST(SCOPE_IDENTITY() AS INT) AS ServantID;
+    END
+    GO
+    CREATE PROCEDURE spUpdateServant
+        @ServantID INT,
+        @BirthDate DATE = NULL,
+        @Gender NVARCHAR(50) = NULL,
+        @MaritalStatus NVARCHAR(50) = NULL,
+        @BloodType NVARCHAR(10) = NULL,
+        @Height DECIMAL(5,2) = NULL,
+        @Weight DECIMAL(5,2) = NULL,
+        @EducationalQualification NVARCHAR(255) = NULL,
+        @SmokingStatus BIT,
+        @DrugAllergies NVARCHAR(MAX) = NULL
+    AS
+    BEGIN
+        SET NOCOUNT ON;
+    
+        UPDATE Servants
+        SET
+            BirthDate = @BirthDate,
+            Gender = @Gender,
+            MaritalStatus = @MaritalStatus,
+            BloodType = @BloodType,
+            Height = @Height,
+            Weight = @Weight,
+            EducationalQualification = @EducationalQualification,
+            SmokingStatus = @SmokingStatus,
+            DrugAllergies = @DrugAllergies,
+            UpdatedAt = SYSUTCDATETIME()
+        WHERE ServantID = @ServantID;
+    END
+    
+    GO
+    CREATE PROCEDURE spDeleteServant
+        @ServantID INT
+    AS
+    BEGIN
+        SET NOCOUNT ON;
+    
+        DELETE FROM Servants WHERE ServantID = @ServantID;
+    END

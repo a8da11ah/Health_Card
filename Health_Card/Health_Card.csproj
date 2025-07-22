@@ -7,9 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Dapper" Version="2.1.35" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.18" />
-        <PackageReference Include="Scalar.AspNetCore" Version="2.6.1" />
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="8.0.2" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.6.4" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Interface\GeneralRemark\" />
+      <Folder Include="Interface\MedicalReferral\" />
+      <Folder Include="Interface\ServantChronicTreatment\" />
+      <Folder Include="Interface\ServantMedicalReview\" />
+      <Folder Include="Interface\SurgicalOperation\" />
+      <Folder Include="Interface\Vaccination\" />
+      <Folder Include="Interface\WorkInjury\" />
     </ItemGroup>
 
 </Project>

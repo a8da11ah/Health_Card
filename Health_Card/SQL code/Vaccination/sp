@@ -1,0 +1,84 @@
+﻿CREATE PROCEDURE spGetVaccinationById
+    @VaccinationID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        VaccinationID,
+        ServantID,
+        VaccinationDate,
+        VaccinationType,
+        VaccinationLocation,
+        Notes,
+        CreatedAt
+    FROM Vaccinations
+    WHERE VaccinationID = @VaccinationID;
+END
+GO
+
+CREATE PROCEDURE spCreateVaccination
+    @ServantID INT,
+    @VaccinationDate DATE,
+    @VaccinationType NVARCHAR(255),
+    @VaccinationLocation NVARCHAR(255) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO Vaccinations
+    (
+        ServantID,
+        VaccinationDate,
+        VaccinationType,
+        VaccinationLocation,
+        Notes,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @VaccinationDate,
+        @VaccinationType,
+        @VaccinationLocation,
+        @Notes,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS VaccinationID;
+END
+GO
+
+CREATE PROCEDURE spUpdateVaccination
+    @VaccinationID INT,
+    @ServantID INT,
+    @VaccinationDate DATE,
+    @VaccinationType NVARCHAR(255),
+    @VaccinationLocation NVARCHAR(255) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Vaccinations
+    SET
+        ServantID = @ServantID,
+        VaccinationDate = @VaccinationDate,
+        VaccinationType = @VaccinationType,
+        VaccinationLocation = @VaccinationLocation,
+        Notes = @Notes
+    WHERE VaccinationID = @VaccinationID;
+END
+GO
+
+CREATE PROCEDURE spDeleteVaccination
+    @VaccinationID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM Vaccinations
+    WHERE VaccinationID = @VaccinationID;
+END
+GO

@@ -1,0 +1,11 @@
+CREATE VIEW vwWorkInjuries AS
+SELECT
+    InjuryID,
+    ServantID,
+    InjuryDate,
+    InjuryType,
+    DepartmentOfInjury,
+    Description,
+    CreatedAt
+FROM WorkInjuries;
+GO

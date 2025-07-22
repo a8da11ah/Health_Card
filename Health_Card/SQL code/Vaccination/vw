@@ -1,0 +1,11 @@
+﻿CREATE VIEW vwVaccinations AS
+SELECT
+    VaccinationID,
+    ServantID,
+    VaccinationDate,
+    VaccinationType,
+    VaccinationLocation,
+    Notes,
+    CreatedAt
+FROM Vaccinations;
+GO

@@ -1,0 +1,84 @@
+﻿CREATE PROCEDURE spGetSurgicalOperationById
+    @OperationID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        OperationID,
+        ServantID,
+        OperationDate,
+        OperationType,
+        HospitalName,
+        Notes,
+        CreatedAt
+    FROM SurgicalOperations
+    WHERE OperationID = @OperationID;
+END
+GO
+
+CREATE PROCEDURE spCreateSurgicalOperation
+    @ServantID INT,
+    @OperationDate DATE,
+    @OperationType NVARCHAR(255),
+    @HospitalName NVARCHAR(255) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO SurgicalOperations
+    (
+        ServantID,
+        OperationDate,
+        OperationType,
+        HospitalName,
+        Notes,
+        CreatedAt
+    )
+    VALUES
+    (
+        @ServantID,
+        @OperationDate,
+        @OperationType,
+        @HospitalName,
+        @Notes,
+        SYSUTCDATETIME()
+    );
+
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS OperationID;
+END
+GO
+
+CREATE PROCEDURE spUpdateSurgicalOperation
+    @OperationID INT,
+    @ServantID INT,
+    @OperationDate DATE,
+    @OperationType NVARCHAR(255),
+    @HospitalName NVARCHAR(255) = NULL,
+    @Notes NVARCHAR(MAX) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE SurgicalOperations
+    SET
+        ServantID = @ServantID,
+        OperationDate = @OperationDate,
+        OperationType = @OperationType,
+        HospitalName = @HospitalName,
+        Notes = @Notes
+    WHERE OperationID = @OperationID;
+END
+GO
+
+CREATE PROCEDURE spDeleteSurgicalOperation
+    @OperationID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DELETE FROM SurgicalOperations
+    WHERE OperationID = @OperationID;
+END
+GO

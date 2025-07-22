@@ -1,0 +1,11 @@
+﻿CREATE VIEW vwServantMedicalReviews AS
+SELECT
+    ReviewID,
+    ServantID,
+    ReviewDate,
+    ReviewType,
+    MedicalDiagnosis,
+    Notes,
+    CreatedAt
+FROM ServantMedicalReviews;
+GO

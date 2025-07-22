@@ -1,0 +1,15 @@
+﻿CREATE VIEW vwServants AS
+SELECT
+    ServantID,
+    BirthDate,
+    Gender,
+    MaritalStatus,
+    BloodType,
+    Height,
+    Weight,
+    EducationalQualification,
+    SmokingStatus,
+    DrugAllergies,
+    CreatedAt,
+    UpdatedAt
+FROM Servants;

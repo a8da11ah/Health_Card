@@ -1,0 +1,9 @@
+﻿CREATE VIEW vwServantChronicTreatments AS
+SELECT
+    TreatmentID,
+    ServantID,
+    TreatmentName,
+    Notes,
+    CreatedAt
+FROM ServantChronicTreatments;
+GO
