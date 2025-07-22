@@ -38,6 +38,7 @@ namespace Health_Card.Repository
                     entity.BirthDate,
                     entity.Gender,
                     entity.MaritalStatus,
+                    
                     entity.BloodType,
                     entity.Height,
                     entity.Weight,
