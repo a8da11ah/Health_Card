@@ -1,0 +1,16 @@
+# Ignore build output
+[Bb]in/
+[Oo]bj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.vs
+
+# Ignore configuration files that may contain secrets
+appsettings.Development.json
+Health_Card.http
+
+# Ignore other files
+repomix-output.xml
+*.log
