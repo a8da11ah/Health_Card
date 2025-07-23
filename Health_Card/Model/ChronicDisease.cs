@@ -15,12 +15,12 @@ namespace Health_Card.Model
         [StringLength(255)]
         public string DiseaseName { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public DiseaseType DiseaseType { get; set; } = DiseaseType.PERSONAL;
 
         [StringLength(100)]
-        public string FamilyMemberRelation { get; set; }
+        public string? FamilyMemberRelation { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }

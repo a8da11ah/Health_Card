@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Health_Card.Dto
@@ -8,9 +8,9 @@ namespace Health_Card.Dto
         public int ReviewID { get; set; }
         public int ServantID { get; set; }
         public DateTime ReviewDate { get; set; }
-        public string ReviewType { get; set; }
-        public string MedicalDiagnosis { get; set; }
-        public string Notes { get; set; }
+        public string? ReviewType { get; set; }
+        public string? MedicalDiagnosis { get; set; }
+        public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 
@@ -23,11 +23,11 @@ namespace Health_Card.Dto
         public DateTime ReviewDate { get; set; }
 
         [StringLength(100)]
-        public string ReviewType { get; set; }
+        public string? ReviewType { get; set; }
 
-        public string MedicalDiagnosis { get; set; }
+        public string? MedicalDiagnosis { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 
     public class UpdateServantMedicalReviewDto
@@ -36,10 +36,10 @@ namespace Health_Card.Dto
         public DateTime ReviewDate { get; set; }
 
         [StringLength(100)]
-        public string ReviewType { get; set; }
+        public string? ReviewType { get; set; }
 
-        public string MedicalDiagnosis { get; set; }
+        public string? MedicalDiagnosis { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

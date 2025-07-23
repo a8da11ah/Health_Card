@@ -17,7 +17,7 @@ namespace Health_Card.Model
         public string MedicalDiagnosis { get; set; }
 
         [StringLength(255)]
-        public string LeaveType { get; set; }
+        public string? LeaveType { get; set; }
 
         public int? LeaveDays { get; set; }
 

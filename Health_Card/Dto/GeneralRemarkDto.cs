@@ -7,9 +7,9 @@ namespace Health_Card.Dto
     {
         public int RemarkID { get; set; }
         public int ServantID { get; set; }
-        public string Remarks { get; set; }
-        public string OtherNotes { get; set; }
-        public string CreatedBy { get; set; }
+        public string? Remarks { get; set; }
+        public string? OtherNotes { get; set; }
+        public string? CreatedBy { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 
@@ -18,21 +18,21 @@ namespace Health_Card.Dto
         [Required]
         public int ServantID { get; set; }
 
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
 
-        public string OtherNotes { get; set; }
+        public string? OtherNotes { get; set; }
 
         [StringLength(255)]
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
     }
 
     public class UpdateGeneralRemarkDto
     {
-        public string Remarks { get; set; }
+        public string? Remarks { get; set; }
 
-        public string OtherNotes { get; set; }
+        public string? OtherNotes { get; set; }
 
         [StringLength(255)]
-        public string CreatedBy { get; set; }
+        public string? CreatedBy { get; set; }
     }
 }

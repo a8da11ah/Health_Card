@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Health_Card.Model
@@ -18,9 +18,9 @@ namespace Health_Card.Model
         public string VaccinationType { get; set; }
 
         [StringLength(255)]
-        public string VaccinationLocation { get; set; }
+        public string? VaccinationLocation { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Health_Card.Model
@@ -14,11 +14,11 @@ namespace Health_Card.Model
         public DateTime ReviewDate { get; set; }
 
         [StringLength(100)]
-        public string ReviewType { get; set; }
+        public string? ReviewType { get; set; }
 
-        public string MedicalDiagnosis { get; set; }
+        public string? MedicalDiagnosis { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Health_Card.Dto
@@ -9,8 +9,8 @@ namespace Health_Card.Dto
         public int ServantID { get; set; }
         public DateTime VaccinationDate { get; set; }
         public string VaccinationType { get; set; }
-        public string VaccinationLocation { get; set; }
-        public string Notes { get; set; }
+        public string? VaccinationLocation { get; set; }
+        public string? Notes { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 
@@ -27,9 +27,9 @@ namespace Health_Card.Dto
         public string VaccinationType { get; set; }
 
         [StringLength(255)]
-        public string VaccinationLocation { get; set; }
+        public string? VaccinationLocation { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 
     public class UpdateVaccinationDto
@@ -42,8 +42,8 @@ namespace Health_Card.Dto
         public string VaccinationType { get; set; }
 
         [StringLength(255)]
-        public string VaccinationLocation { get; set; }
+        public string? VaccinationLocation { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
     }
 }

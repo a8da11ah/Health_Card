@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Health_Card.Dto
@@ -9,8 +9,8 @@ namespace Health_Card.Dto
         public int ServantID { get; set; }
         public DateTime InjuryDate { get; set; }
         public string InjuryType { get; set; }
-        public string DepartmentOfInjury { get; set; }
-        public string Description { get; set; }
+        public string? DepartmentOfInjury { get; set; }
+        public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
     }
 
@@ -27,9 +27,9 @@ namespace Health_Card.Dto
         public string InjuryType { get; set; }
 
         [StringLength(255)]
-        public string DepartmentOfInjury { get; set; }
+        public string? DepartmentOfInjury { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 
     public class UpdateWorkInjuryDto
@@ -42,8 +42,8 @@ namespace Health_Card.Dto
         public string InjuryType { get; set; }
 
         [StringLength(255)]
-        public string DepartmentOfInjury { get; set; }
+        public string? DepartmentOfInjury { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

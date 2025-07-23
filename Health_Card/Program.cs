@@ -14,6 +14,8 @@ using Health_Card.Interface.WorkInjury;
 using Health_Card.Repository;
 using Health_Card.Service;
 using System.Data; // You'll need this for IDbConnection
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 
 
@@ -33,7 +35,24 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().ConfigureApiBehaviorOptions(options =>
+{
+    options.InvalidModelStateResponseFactory = context =>
+    {
+        var problemDetails = new ValidationProblemDetails(context.ModelState)
+        {
+            Status = StatusCodes.Status422UnprocessableEntity,
+            Title = "Validation Error",
+            Type = "https://tools.ietf.org/html/rfc4918#section-11.2",
+            Detail = "One or more validation errors occurred."
+        };
+
+        return new UnprocessableEntityObjectResult(problemDetails)
+        {
+            ContentTypes = { "application/problem+json" }
+        };
+    };
+});
 builder.Services.AddEndpointsApiExplorer();
 
 

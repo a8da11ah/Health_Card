@@ -24,12 +24,12 @@ namespace Health_Card.Dto
         [StringLength(255)]
         public string DiseaseName { get; set; }
 
-        public string Notes { get; set; }
+        public string? Notes { get; set; }
 
         public DiseaseType DiseaseType { get; set; } = DiseaseType.PERSONAL;
 
         [StringLength(100)]
-        public string FamilyMemberRelation { get; set; }
+        public string? FamilyMemberRelation { get; set; }
     }
 
     public class UpdateChronicDiseaseDto

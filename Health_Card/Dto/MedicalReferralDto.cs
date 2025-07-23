@@ -8,8 +8,8 @@ namespace Health_Card.Dto
         public int ReferralID { get; set; }
         public int ServantID { get; set; }
         public DateTime ReferralDate { get; set; }
-        public string MedicalDiagnosis { get; set; }
-        public string LeaveType { get; set; }
+        public string? MedicalDiagnosis { get; set; }
+        public string? LeaveType { get; set; }
         public int? LeaveDays { get; set; }
         public DateTime CreatedAt { get; set; }
     }
