@@ -16,14 +16,4 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Interface\GeneralRemark\" />
-      <Folder Include="Interface\MedicalReferral\" />
-      <Folder Include="Interface\ServantChronicTreatment\" />
-      <Folder Include="Interface\ServantMedicalReview\" />
-      <Folder Include="Interface\SurgicalOperation\" />
-      <Folder Include="Interface\Vaccination\" />
-      <Folder Include="Interface\WorkInjury\" />
-    </ItemGroup>
-
 </Project>

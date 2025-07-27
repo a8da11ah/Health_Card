@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Health_Card.Dto;
 using Health_Card.Interface;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +12,20 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class ChronicDiseaseController : ControllerBase
     {
-        private readonly IChronicDiseaseService _chronicDiseaseService;
+        private readonly IServiceBase<ChronicDisease,ChronicDiseaseFilter> _chronicDiseaseService;
 
-        public ChronicDiseaseController(IChronicDiseaseService chronicDiseaseService)
+        public ChronicDiseaseController(IServiceBase<ChronicDisease,ChronicDiseaseFilter> chronicDiseaseService)
         {
             _chronicDiseaseService = chronicDiseaseService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChronicDisease>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ChronicDisease>>> GetAll([FromQuery] ChronicDiseaseFilter filter)
         {
-            var chronicDiseases = await _chronicDiseaseService.GetAllAsync();
-            return Ok(chronicDiseases);
+
+                var chronicDiseases = await _chronicDiseaseService.GetAllAsync(filter);
+                return Ok(chronicDiseases);
+            
         }
 
         [HttpGet("{id}")]

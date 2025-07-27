@@ -1,24 +1,53 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using Health_Card.Base;
-using Health_Card.Interface.WorkInjury;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 using Dapper;
 
 namespace Health_Card.Repository
 {
-    public class WorkInjuryRepository : BaseRepository, IWorkInjuryRepository
+    public class WorkInjuryRepository : BaseRepository, IRepositoryBase<WorkInjury,WorkInjuryFilter>
     {
         public WorkInjuryRepository(IDbConnection connection) : base(connection)
         {
         }
 
-        public async Task<IEnumerable<WorkInjury>> GetAllAsync()
+
+        public async Task<IEnumerable<WorkInjury>> GetAllAsync(WorkInjuryFilter filter)
         {
-            const string sql = "SELECT * FROM WorkInjuries";
-            return await QueryAsync<WorkInjury>(sql);
+            var sql = new StringBuilder("SELECT * FROM WorkInjuries WHERE 1=1");
+
+            if (!string.IsNullOrEmpty(filter.InjuryType))
+            {
+                sql.Append(" AND InjuryType LIKE @InjuryType");
+                filter.InjuryType = $"%{filter.InjuryType}%";
+            }
+
+            if (!string.IsNullOrEmpty(filter.DoctorName))
+            {
+                sql.Append(" AND DoctorName LIKE @DoctorName");
+                filter.DoctorName = $"%{filter.DoctorName}%";
+            }
+
+            sql.Append(" ORDER BY WorkInjuryID"); // Replace with the actual PK or relevant column
+
+            sql.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
+
+            var parameters = new
+            {
+                filter.InjuryType,
+                filter.DoctorName,
+                Offset = (filter.Page - 1) * filter.PageSize,
+                PageSize = filter.PageSize
+            };
+
+            return await QueryAsync<WorkInjury>(sql.ToString(), parameters);
         }
+
 
         public async Task<WorkInjury> GetByIdAsync(int id)
         {

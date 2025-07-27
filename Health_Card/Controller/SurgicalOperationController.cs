@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.SurgicalOperation;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +11,20 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class SurgicalOperationController : ControllerBase
     {
-        private readonly ISurgicalOperationService _surgicalOperationService;
+        private readonly IServiceBase<SurgicalOperation, SurgicalOperationFilter> _surgicalOperationService;
 
-        public SurgicalOperationController(ISurgicalOperationService surgicalOperationService)
+        public SurgicalOperationController(IServiceBase<SurgicalOperation, SurgicalOperationFilter> surgicalOperationService)
         {
             _surgicalOperationService = surgicalOperationService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<SurgicalOperation>>> GetAll()
+        public async Task<ActionResult<IEnumerable<SurgicalOperation>>> GetAll([FromQuery] SurgicalOperationFilter filter)
         {
-            var surgicalOperations = await _surgicalOperationService.GetAllAsync();
-            return Ok(surgicalOperations);
+
+                var surgicalOperations = await _surgicalOperationService.GetAllAsync(filter);
+                return Ok(surgicalOperations);
+            
         }
 
         [HttpGet("{id}")]

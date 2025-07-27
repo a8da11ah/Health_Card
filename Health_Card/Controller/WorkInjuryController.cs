@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.WorkInjury;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +11,19 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class WorkInjuryController : ControllerBase
     {
-        private readonly IWorkInjuryService _workInjuryService;
+        private readonly IServiceBase<WorkInjury,WorkInjuryFilter> _workInjuryService;
 
-        public WorkInjuryController(IWorkInjuryService workInjuryService)
+        public WorkInjuryController(IServiceBase<WorkInjury,WorkInjuryFilter> workInjuryService)
         {
             _workInjuryService = workInjuryService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<WorkInjury>>> GetAll()
+        public async Task<ActionResult<IEnumerable<WorkInjury>>> GetAll([FromQuery] WorkInjuryFilter filter)
         {
-            var workInjuries = await _workInjuryService.GetAllAsync();
-            return Ok(workInjuries);
+                var workInjuries = await _workInjuryService.GetAllAsync(filter);
+                return Ok(workInjuries);
+            
         }
 
         [HttpGet("{id}")]

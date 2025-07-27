@@ -1,22 +1,25 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.MedicalReferral;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class MedicalReferralService : IMedicalReferralService
+    public class MedicalReferralService : IServiceBase<MedicalReferral, MedicalReferralFilter>
     {
-        private readonly IMedicalReferralRepository _medicalReferralRepository;
+        private readonly IRepositoryBase<MedicalReferral, MedicalReferralFilter> _medicalReferralRepository;
 
-        public MedicalReferralService(IMedicalReferralRepository medicalReferralRepository)
+        public MedicalReferralService(IRepositoryBase<MedicalReferral, MedicalReferralFilter> medicalReferralRepository)
         {
             _medicalReferralRepository = medicalReferralRepository;
         }
 
-        public async Task<IEnumerable<MedicalReferral>> GetAllAsync()
+
+
+        public async Task<IEnumerable<MedicalReferral>> GetAllAsync(MedicalReferralFilter filter)
         {
-            return await _medicalReferralRepository.GetAllAsync();
+            return await _medicalReferralRepository.GetAllAsync(filter);
         }
 
         public async Task<MedicalReferral> GetByIdAsync(int id)

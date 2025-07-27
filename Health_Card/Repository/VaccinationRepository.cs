@@ -1,24 +1,54 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using Health_Card.Base;
-using Health_Card.Interface.Vaccination;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 using Dapper;
 
 namespace Health_Card.Repository
 {
-    public class VaccinationRepository : BaseRepository, IVaccinationRepository
+    public class VaccinationRepository : BaseRepository, IRepositoryBase<Vaccination,VaccinationFilter>
     {
         public VaccinationRepository(IDbConnection connection) : base(connection)
         {
         }
 
-        public async Task<IEnumerable<Vaccination>> GetAllAsync()
+
+
+        public async Task<IEnumerable<Vaccination>> GetAllAsync(VaccinationFilter filter)
         {
-            const string sql = "SELECT * FROM Vaccinations";
-            return await QueryAsync<Vaccination>(sql);
+            var sql = new StringBuilder("SELECT * FROM Vaccinations WHERE 1=1");
+
+            if (!string.IsNullOrEmpty(filter.VaccinationType))
+            {
+                sql.Append(" AND VaccinationType LIKE @VaccinationType");
+                filter.VaccinationType = $"%{filter.VaccinationType}%";
+            }
+
+            if (!string.IsNullOrEmpty(filter.Dose))
+            {
+                sql.Append(" AND Dose LIKE @Dose");
+                filter.Dose = $"%{filter.Dose}%";
+            }
+
+            sql.Append(" ORDER BY VaccinationID"); // Replace VaccinationID with your actual PK or suitable column
+
+            sql.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
+
+            var parameters = new
+            {
+                filter.VaccinationType,
+                filter.Dose,
+                Offset = (filter.Page - 1) * filter.PageSize,
+                PageSize = filter.PageSize
+            };
+
+            return await QueryAsync<Vaccination>(sql.ToString(), parameters);
         }
+
 
         public async Task<Vaccination> GetByIdAsync(int id)
         {

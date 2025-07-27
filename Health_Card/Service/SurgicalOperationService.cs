@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.SurgicalOperation;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class SurgicalOperationService : ISurgicalOperationService
+    public class SurgicalOperationService : IServiceBase<SurgicalOperation, SurgicalOperationFilter>
     {
-        private readonly ISurgicalOperationRepository _surgicalOperationRepository;
+        private readonly  IRepositoryBase<SurgicalOperation,SurgicalOperationFilter> _surgicalOperationRepository;
 
-        public SurgicalOperationService(ISurgicalOperationRepository surgicalOperationRepository)
+        public SurgicalOperationService( IRepositoryBase<SurgicalOperation,SurgicalOperationFilter> surgicalOperationRepository)
         {
             _surgicalOperationRepository = surgicalOperationRepository;
         }
 
-        public async Task<IEnumerable<SurgicalOperation>> GetAllAsync()
+        public async Task<IEnumerable<SurgicalOperation>> GetAllAsync(SurgicalOperationFilter filter)
         {
-            return await _surgicalOperationRepository.GetAllAsync();
+            return await _surgicalOperationRepository.GetAllAsync(filter);
         }
 
         public async Task<SurgicalOperation> GetByIdAsync(int id)

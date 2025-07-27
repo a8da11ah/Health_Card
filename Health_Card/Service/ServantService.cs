@@ -1,24 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.servant;
+using Health_Card.Dto;
 using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class ServantService : IServantService
+    public class ServantService : IServiceBase<Servant,ServantFilter>
     {
-        private readonly IServantRepository _servantRepository;
+        private readonly  IServiceBase<Servant,ServantFilter> _servantRepository;
 
-        public ServantService(IServantRepository servantRepository)
+        public ServantService( IServiceBase<Servant,ServantFilter> servantRepository)
         {
             _servantRepository = servantRepository;
         }
 
-        public async Task<IEnumerable<Servant>> GetAllAsync()
+        public async Task<IEnumerable<Servant>> GetAllAsync(ServantFilter filter)
         {
-            return await _servantRepository.GetAllAsync();
+            return await _servantRepository.GetAllAsync(filter);
         }
+
+        // public async Task<IEnumerable<Servant>> GetByFilterAsync(ServantFilter filter)
+        // {
+        //     return await _servantRepository.GetByFilterAsync(filter);
+        // }
 
         public async Task<Servant> GetByIdAsync(int id)
         {

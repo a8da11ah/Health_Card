@@ -1,24 +1,45 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using Health_Card.Base;
-using Health_Card.Interface.GeneralRemark;
+using Health_Card.Dto;
 using Health_Card.Model;
 using Dapper;
+using Health_Card.Interface;
 
 namespace Health_Card.Repository
 {
-    public class GeneralRemarkRepository : BaseRepository, IGeneralRemarkRepository
+    public class GeneralRemarkRepository : BaseRepository, IRepositoryBase<GeneralRemark,GeneralRemarkFilter>
     {
         public GeneralRemarkRepository(IDbConnection connection) : base(connection)
         {
         }
-
-        public async Task<IEnumerable<GeneralRemark>> GetAllAsync()
+        
+        public async Task<IEnumerable<GeneralRemark>> GetAllAsync(GeneralRemarkFilter filter)
         {
-            const string sql = "SELECT * FROM GeneralRemarks";
-            return await QueryAsync<GeneralRemark>(sql);
+            var sql = new StringBuilder("SELECT * FROM GeneralRemarks WHERE 1=1");
+
+            if (!string.IsNullOrEmpty(filter.CreatedBy))
+            {
+                sql.Append(" AND CreatedBy LIKE @CreatedBy");
+                filter.CreatedBy = $"%{filter.CreatedBy}%";
+            }
+
+            sql.Append(" ORDER BY GeneralRemarkID"); // Replace with your actual PK or suitable column
+
+            sql.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
+
+            var parameters = new
+            {
+                filter.CreatedBy,
+                Offset = (filter.Page - 1) * filter.PageSize,
+                PageSize = filter.PageSize
+            };
+
+            return await QueryAsync<GeneralRemark>(sql.ToString(), parameters);
         }
+
 
         public async Task<GeneralRemark> GetByIdAsync(int id)
         {

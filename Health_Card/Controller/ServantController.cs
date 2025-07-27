@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿
+using Health_Card.Dto;
 using Health_Card.Interface;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +10,19 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class ServantController : ControllerBase
     {
-        private readonly IServantService _servantService;
+        private readonly IServiceBase<Servant,ServantFilter> _servantService;
 
-        public ServantController(IServantService servantService)
+        public ServantController(IServiceBase<Servant,ServantFilter> servantService)
         {
             _servantService = servantService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Servant>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Servant>>> GetAll([FromQuery] ServantFilter filter)
         {
-            var servants = await _servantService.GetAllAsync();
-            return Ok(servants);
+                var servants = await _servantService.GetAllAsync(filter);
+                return Ok(servants);
+            
         }
 
         [HttpGet("{id}")]

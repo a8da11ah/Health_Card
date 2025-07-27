@@ -2,20 +2,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Scalar.AspNetCore;
 using Health_Card.Data;
-using Health_Card.Interface.servant;
 using Health_Card.Interface;
-using Health_Card.Interface.GeneralRemark;
-using Health_Card.Interface.MedicalReferral;
-using Health_Card.Interface.ServantChronicTreatment;
-using Health_Card.Interface.ServantMedicalReview;
-using Health_Card.Interface.SurgicalOperation;
-using Health_Card.Interface.Vaccination;
-using Health_Card.Interface.WorkInjury;
 using Health_Card.Repository;
 using Health_Card.Service;
-using System.Data; // You'll need this for IDbConnection
+using System.Data;
+using Health_Card.Model; // You'll need this for IDbConnection
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
+
+using Health_Card.Dto;
 
 
 
@@ -65,29 +59,37 @@ builder.Services.AddScoped<IDbConnection>(sp =>
 });
 
 // Register repository with connection from DapperContext
-builder.Services.AddScoped<IServantRepository, ServantRepository>();
-builder.Services.AddScoped<IServantService, ServantService>();
+builder.Services.AddScoped<IRepositoryBase<Servant,ServantFilter>, ServantRepository>();
+builder.Services.AddScoped<IServiceBase<Servant,ServantFilter>, ServantService>();
 
-builder.Services.AddScoped<IChronicDiseaseRepository, ChronicDiseaseRepository>();
-builder.Services.AddScoped<IChronicDiseaseService, ChronicDiseaseService>();
+builder.Services.AddScoped<IRepositoryBase<ChronicDisease,ChronicDiseaseFilter>, ChronicDiseaseRepository>();
+builder.Services.AddScoped<IServiceBase<ChronicDisease,ChronicDiseaseFilter>, ChronicDiseaseService>();
 
-builder.Services.AddScoped<IGeneralRemarkRepository, GeneralRemarkRepository>();
-builder.Services.AddScoped<IGeneralRemarkService, GeneralRemarkService>();
 
-builder.Services.AddScoped<IMedicalReferralRepository, MedicalReferralRepository>();
-builder.Services.AddScoped<IMedicalReferralService, MedicalReferralService>();
 
-builder.Services.AddScoped<IServantChronicTreatmentRepository, ServantChronicTreatmentRepository>();
-builder.Services.AddScoped<IServantChronicTreatmentService, ServantChronicTreatmentService>();
+builder.Services.AddScoped< IRepositoryBase<GeneralRemark, GeneralRemarkFilter>, GeneralRemarkRepository>();
+builder.Services.AddScoped< IServiceBase<GeneralRemark, GeneralRemarkFilter>, GeneralRemarkService>();
 
-builder.Services.AddScoped<IServantMedicalReviewRepository, ServantMedicalReviewRepository>();
-builder.Services.AddScoped<IServantMedicalReviewService, ServantMedicalReviewService>();
-builder.Services.AddScoped<ISurgicalOperationRepository, SurgicalOperationRepository>();
-builder.Services.AddScoped<ISurgicalOperationService, SurgicalOperationService>();
-builder.Services.AddScoped<IVaccinationRepository, VaccinationRepository>();
-builder.Services.AddScoped<IVaccinationService, VaccinationService>();
-builder.Services.AddScoped<IWorkInjuryRepository, WorkInjuryRepository>();
-builder.Services.AddScoped<IWorkInjuryService, WorkInjuryService>();
+builder.Services.AddScoped< IRepositoryBase<MedicalReferral, MedicalReferralFilter>, MedicalReferralRepository>();
+builder.Services.AddScoped< IServiceBase<MedicalReferral, MedicalReferralFilter>, MedicalReferralService>();
+
+builder.Services.AddScoped< IRepositoryBase<ServantChronicTreatment,ServantChronicTreatmentFilter>, ServantChronicTreatmentRepository>();
+builder.Services.AddScoped<IServiceBase<ServantChronicTreatment,ServantChronicTreatmentFilter>, ServantChronicTreatmentService>();
+
+builder.Services.AddScoped<IRepositoryBase<ServantMedicalReview,ServantMedicalReviewFilter>, ServantMedicalReviewRepository>();
+builder.Services.AddScoped<IServiceBase<ServantMedicalReview,ServantMedicalReviewFilter>, ServantMedicalReviewService>();
+
+
+builder.Services.AddScoped< IRepositoryBase<SurgicalOperation,SurgicalOperationFilter>, SurgicalOperationRepository>();
+builder.Services.AddScoped<IServiceBase<SurgicalOperation, SurgicalOperationFilter>, SurgicalOperationService>();
+
+
+builder.Services.AddScoped<IRepositoryBase<Vaccination,VaccinationFilter>, VaccinationRepository>();
+builder.Services.AddScoped< IServiceBase<Vaccination,VaccinationFilter>, VaccinationService>();
+
+
+builder.Services.AddScoped< IRepositoryBase<WorkInjury,WorkInjuryFilter>, WorkInjuryRepository>();
+builder.Services.AddScoped<IServiceBase<WorkInjury,WorkInjuryFilter>, WorkInjuryService>();
 
 
     

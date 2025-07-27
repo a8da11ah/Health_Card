@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿
 
 namespace Health_Card.Interface
 {
-    public interface IService<T>
+    public interface IServiceBase<T,TFilter>
     {
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(TFilter filter);
+        // Task<IEnumerable<T>> GetByFilterAsync(T filter);
+
         Task<T> GetByIdAsync(int id);
         Task CreateAsync(T entity);
         Task UpdateAsync(T entity);

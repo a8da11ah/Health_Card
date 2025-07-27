@@ -1,24 +1,54 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using Health_Card.Base;
-using Health_Card.Interface.ServantMedicalReview;
+using Health_Card.Dto;
 using Health_Card.Model;
+using Health_Card.Interface;
 using Dapper;
 
 namespace Health_Card.Repository
 {
-    public class ServantMedicalReviewRepository : BaseRepository, IServantMedicalReviewRepository
+    public class ServantMedicalReviewRepository : BaseRepository, IRepositoryBase<ServantMedicalReview,ServantMedicalReviewFilter>
     {
         public ServantMedicalReviewRepository(IDbConnection connection) : base(connection)
         {
         }
 
-        public async Task<IEnumerable<ServantMedicalReview>> GetAllAsync()
+
+
+        public async Task<IEnumerable<ServantMedicalReview>> GetAllAsync(ServantMedicalReviewFilter filter)
         {
-            const string sql = "SELECT * FROM ServantMedicalReviews";
-            return await QueryAsync<ServantMedicalReview>(sql);
+            var sql = new StringBuilder("SELECT * FROM ServantMedicalReviews WHERE 1=1");
+
+            if (!string.IsNullOrEmpty(filter.ReviewType))
+            {
+                sql.Append(" AND ReviewType LIKE @ReviewType");
+                filter.ReviewType = $"%{filter.ReviewType}%";
+            }
+
+            if (!string.IsNullOrEmpty(filter.DoctorName))
+            {
+                sql.Append(" AND DoctorName LIKE @DoctorName");
+                filter.DoctorName = $"%{filter.DoctorName}%";
+            }
+
+            sql.Append(" ORDER BY ReviewID"); // Replace ReviewID with your actual primary key or a suitable column
+
+            sql.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
+
+            var parameters = new
+            {
+                filter.ReviewType,
+                filter.DoctorName,
+                Offset = (filter.Page - 1) * filter.PageSize,
+                PageSize = filter.PageSize
+            };
+
+            return await QueryAsync<ServantMedicalReview>(sql.ToString(), parameters);
         }
+
 
         public async Task<ServantMedicalReview> GetByIdAsync(int id)
         {

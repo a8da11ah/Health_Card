@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.MedicalReferral;
+using Health_Card.Dto;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
+using Health_Card.Interface;
 
 namespace Health_Card.Controllers
 {
@@ -10,18 +11,20 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class MedicalReferralController : ControllerBase
     {
-        private readonly IMedicalReferralService _medicalReferralService;
+        private readonly IServiceBase<MedicalReferral, MedicalReferralFilter> _medicalReferralService;
 
-        public MedicalReferralController(IMedicalReferralService medicalReferralService)
+        public MedicalReferralController(IServiceBase<MedicalReferral, MedicalReferralFilter> medicalReferralService)
         {
             _medicalReferralService = medicalReferralService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedicalReferral>>> GetAll()
+        public async Task<ActionResult<IEnumerable<MedicalReferral>>> GetAll([FromQuery] MedicalReferralFilter filter)
         {
-            var medicalReferrals = await _medicalReferralService.GetAllAsync();
-            return Ok(medicalReferrals);
+
+                var medicalReferrals = await _medicalReferralService.GetAllAsync(filter);
+                return Ok(medicalReferrals);
+            
         }
 
         [HttpGet("{id}")]

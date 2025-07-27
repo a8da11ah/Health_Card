@@ -1,24 +1,53 @@
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Threading.Tasks;
 using Health_Card.Base;
-using Health_Card.Interface.MedicalReferral;
+using Health_Card.Dto;
 using Health_Card.Model;
 using Dapper;
+using Health_Card.Interface;
 
 namespace Health_Card.Repository
 {
-    public class MedicalReferralRepository : BaseRepository, IMedicalReferralRepository
+    public class MedicalReferralRepository : BaseRepository, IRepositoryBase<MedicalReferral, MedicalReferralFilter>
     {
         public MedicalReferralRepository(IDbConnection connection) : base(connection)
         {
         }
 
-        public async Task<IEnumerable<MedicalReferral>> GetAllAsync()
+
+        public async Task<IEnumerable<MedicalReferral>> GetAllAsync(MedicalReferralFilter filter)
         {
-            const string sql = "SELECT * FROM MedicalReferrals";
-            return await QueryAsync<MedicalReferral>(sql);
+            var sql = new StringBuilder("SELECT * FROM MedicalReferrals WHERE 1=1");
+
+            if (!string.IsNullOrEmpty(filter.HospitalName))
+            {
+                sql.Append(" AND HospitalName LIKE @HospitalName");
+                filter.HospitalName = $"%{filter.HospitalName}%";
+            }
+
+            if (!string.IsNullOrEmpty(filter.DoctorName))
+            {
+                sql.Append(" AND DoctorName LIKE @DoctorName");
+                filter.DoctorName = $"%{filter.DoctorName}%";
+            }
+
+            sql.Append(" ORDER BY MedicalReferralID"); // Replace with your PK or appropriate column
+
+            sql.Append(" OFFSET @Offset ROWS FETCH NEXT @PageSize ROWS ONLY");
+
+            var parameters = new
+            {
+                filter.HospitalName,
+                filter.DoctorName,
+                Offset = (filter.Page - 1) * filter.PageSize,
+                PageSize = filter.PageSize
+            };
+
+            return await QueryAsync<MedicalReferral>(sql.ToString(), parameters);
         }
+
 
         public async Task<MedicalReferral> GetByIdAsync(int id)
         {

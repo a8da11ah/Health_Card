@@ -1,22 +1,22 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Health_Card.Interface.GeneralRemark;
+
+using Health_Card.Dto;
 using Health_Card.Model;
+using Health_Card.Interface;
 
 namespace Health_Card.Service
 {
-    public class GeneralRemarkService : IGeneralRemarkService
+    public class GeneralRemarkService : IServiceBase<GeneralRemark, GeneralRemarkFilter>
     {
-        private readonly IGeneralRemarkRepository _generalRemarkRepository;
+        private readonly IRepositoryBase<GeneralRemark, GeneralRemarkFilter> _generalRemarkRepository;
 
-        public GeneralRemarkService(IGeneralRemarkRepository generalRemarkRepository)
+        public GeneralRemarkService(IRepositoryBase<GeneralRemark, GeneralRemarkFilter> generalRemarkRepository)
         {
             _generalRemarkRepository = generalRemarkRepository;
         }
-
-        public async Task<IEnumerable<GeneralRemark>> GetAllAsync()
+        
+        public async Task<IEnumerable<GeneralRemark>> GetAllAsync(GeneralRemarkFilter filter)
         {
-            return await _generalRemarkRepository.GetAllAsync();
+            return await _generalRemarkRepository.GetAllAsync(filter);
         }
 
         public async Task<GeneralRemark> GetByIdAsync(int id)

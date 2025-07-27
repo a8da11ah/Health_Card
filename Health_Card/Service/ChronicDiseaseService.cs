@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Health_Card.Dto;
 using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class ChronicDiseaseService : IChronicDiseaseService
+    public class ChronicDiseaseService : IServiceBase<ChronicDisease,ChronicDiseaseFilter>
     {
-        private readonly IChronicDiseaseRepository _chronicDiseaseRepository;
+        private readonly IServiceBase<ChronicDisease,ChronicDiseaseFilter> _chronicDiseaseRepository;
 
-        public ChronicDiseaseService(IChronicDiseaseRepository chronicDiseaseRepository)
+        public ChronicDiseaseService(IServiceBase<ChronicDisease,ChronicDiseaseFilter> chronicDiseaseRepository)
         {
             _chronicDiseaseRepository = chronicDiseaseRepository;
         }
 
-        public async Task<IEnumerable<ChronicDisease>> GetAllAsync()
+        public async Task<IEnumerable<ChronicDisease>> GetAllAsync(ChronicDiseaseFilter filter)
         {
-            return await _chronicDiseaseRepository.GetAllAsync();
+            return await _chronicDiseaseRepository.GetAllAsync(filter);
         }
 
         public async Task<ChronicDisease> GetByIdAsync(int id)

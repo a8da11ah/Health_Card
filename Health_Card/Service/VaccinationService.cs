@@ -1,22 +1,22 @@
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Health_Card.Interface.Vaccination;
+
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class VaccinationService : IVaccinationService
+    public class VaccinationService : IServiceBase<Vaccination,VaccinationFilter>
     {
-        private readonly IVaccinationRepository _vaccinationRepository;
+        private readonly IRepositoryBase<Vaccination,VaccinationFilter> _vaccinationRepository;
 
-        public VaccinationService(IVaccinationRepository vaccinationRepository)
+        public VaccinationService(IRepositoryBase<Vaccination,VaccinationFilter> vaccinationRepository)
         {
             _vaccinationRepository = vaccinationRepository;
         }
 
-        public async Task<IEnumerable<Vaccination>> GetAllAsync()
+        public async Task<IEnumerable<Vaccination>> GetAllAsync(VaccinationFilter filter)
         {
-            return await _vaccinationRepository.GetAllAsync();
+            return await _vaccinationRepository.GetAllAsync(filter);
         }
 
         public async Task<Vaccination> GetByIdAsync(int id)

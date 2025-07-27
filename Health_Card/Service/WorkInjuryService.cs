@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.WorkInjury;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 
 namespace Health_Card.Service
 {
-    public class WorkInjuryService : IWorkInjuryService
+    public class WorkInjuryService : IServiceBase<WorkInjury,WorkInjuryFilter>
     {
-        private readonly IWorkInjuryRepository _workInjuryRepository;
+        private readonly  IRepositoryBase<WorkInjury,WorkInjuryFilter> _workInjuryRepository;
 
-        public WorkInjuryService(IWorkInjuryRepository workInjuryRepository)
+        public WorkInjuryService( IRepositoryBase<WorkInjury,WorkInjuryFilter> workInjuryRepository)
         {
             _workInjuryRepository = workInjuryRepository;
         }
 
-        public async Task<IEnumerable<WorkInjury>> GetAllAsync()
+        public async Task<IEnumerable<WorkInjury>> GetAllAsync(WorkInjuryFilter filter )
         {
-            return await _workInjuryRepository.GetAllAsync();
+            return await _workInjuryRepository.GetAllAsync(filter);
         }
 
         public async Task<WorkInjury> GetByIdAsync(int id)

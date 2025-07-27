@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Health_Card.Interface.Vaccination;
+using Health_Card.Dto;
+using Health_Card.Interface;
 using Health_Card.Model;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,18 +11,20 @@ namespace Health_Card.Controllers
     [Route("api/[controller]")]
     public class VaccinationController : ControllerBase
     {
-        private readonly IVaccinationService _vaccinationService;
+        private readonly  IServiceBase<Vaccination,VaccinationFilter> _vaccinationService;
 
-        public VaccinationController(IVaccinationService vaccinationService)
+        public VaccinationController( IServiceBase<Vaccination,VaccinationFilter> vaccinationService)
         {
             _vaccinationService = vaccinationService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Vaccination>>> GetAll()
+        public async Task<ActionResult<IEnumerable<Vaccination>>> GetAll([FromQuery] VaccinationFilter filter)
         {
-            var vaccinations = await _vaccinationService.GetAllAsync();
-            return Ok(vaccinations);
+
+                var vaccinations = await _vaccinationService.GetAllAsync(filter);
+                return Ok(vaccinations);
+            
         }
 
         [HttpGet("{id}")]
