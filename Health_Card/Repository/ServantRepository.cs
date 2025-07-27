@@ -136,10 +136,7 @@ namespace Health_Card.Repository
                 commandType: CommandType.StoredProcedure);
         }
 
-        public Task<IEnumerable<Servant>> GetAllAsync()
-        {
-            throw new System.NotImplementedException();
-        }
+
     }
 }
 
