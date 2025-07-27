@@ -9,68 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e5ff758-edfe-4b49-9d20-0654751a210b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Health_Card/Base/BaseFilter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Health_Card/Dto/ServantChronicTreatment/ServantChronicTreatmentFilter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Health_Card/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Health_Card/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/ChronicDiseaseController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/ChronicDiseaseController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/GeneralRemarkController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/GeneralRemarkController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/MedicalReferralController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/MedicalReferralController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/ServantChronicTreatmentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/ServantChronicTreatmentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/ServantController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/ServantController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/ServantMedicalReviewController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/ServantMedicalReviewController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/SurgicalOperationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/SurgicalOperationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/VaccinationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/VaccinationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Controller/WorkInjuryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Controller/WorkInjuryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/ChronicDiseaseDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/ChronicDisease/ChronicDiseaseDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/GeneralRemarkDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/GeneralRemark/GeneralRemarkDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/MedicalReferralDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/MedicalReferral/MedicalReferralDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/ServantChronicTreatmentDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/ServantChronicTreatment/ServantChronicTreatmentDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/ServantDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/Servant/ServantDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/ServantMedicalReviewDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/ServantMedicalReview/ServantMedicalReviewDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/SurgicalOperationDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/SurgicalOperation/SurgicalOperationDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/VaccinationDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/Vaccination/VaccinationDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Dto/WorkInjuryDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Dto/WorkInjury/WorkInjuryDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Health_Card.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Health_Card.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ChronicDisease/IChronicDiseaseRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ChronicDisease/IChronicDiseaseService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/GeneralRemark/IGeneralRemarkRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/GeneralRemark/IGeneralRemarkService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/IRepositoryBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Interface/IRepositoryBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/IService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Interface/IServiceBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/MedicalReferral/IMedicalReferralRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/MedicalReferral/IMedicalReferralService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ServantChronicTreatment/IServantChronicTreatmentRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ServantChronicTreatment/IServantChronicTreatmentService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ServantMedicalReview/IServantMedicalReviewRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/ServantMedicalReview/IServantMedicalReviewService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/SurgicalOperation/ISurgicalOperationRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/SurgicalOperation/ISurgicalOperationService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/Vaccination/IVaccinationRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/Vaccination/IVaccinationService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/WorkInjury/IWorkInjuryRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/WorkInjury/IWorkInjuryService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/servant/IServantRepository.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Interface/servant/IServantService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/ChronicDiseaseRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/ChronicDiseaseRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/GeneralRemarkRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/GeneralRemarkRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/MedicalReferralRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/MedicalReferralRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/ServantChronicTreatmentRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/ServantChronicTreatmentRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/ServantMedicalReviewRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/ServantMedicalReviewRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/ServantRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/ServantRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/SurgicalOperationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/SurgicalOperationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/VaccinationRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/VaccinationRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Repository/WorkInjuryRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Repository/WorkInjuryRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/ChronicDiseaseService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/ChronicDiseaseService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/GeneralRemarkService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/GeneralRemarkService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/MedicalReferralService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/MedicalReferralService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/ServantChronicTreatmentService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/ServantChronicTreatmentService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/ServantMedicalReviewService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/ServantMedicalReviewService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/ServantService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/ServantService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/SurgicalOperationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/SurgicalOperationService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Health_Card/Service/VaccinationService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Health_Card/Service/VaccinationService.cs" afterDir="false" />
-    </list>
+    <list default="true" id="7e5ff758-edfe-4b49-9d20-0654751a210b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,6 +20,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/123ab/RiderProjects/Health_Card/Health_Card/Repository/ServantRepository.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -185,7 +127,7 @@
       <workItem from="1753251597611" duration="2762000" />
       <workItem from="1753361951954" duration="4961000" />
       <workItem from="1753551009772" duration="5413000" />
-      <workItem from="1753611927400" duration="9345000" />
+      <workItem from="1753611927400" duration="9670000" />
     </task>
     <task id="LOCAL؜-٠٠٠٠١" summary="Configuring ScalarUI">
       <option name="closed" value="true" />
@@ -219,7 +161,31 @@
       <option name="project" value="LOCAL؜" />
       <updated>1753184217136</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="implement pagination and filtering">
+      <option name="closed" value="true" />
+      <created>1753625656598</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753625656598</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix servnat repo problem">
+      <option name="closed" value="true" />
+      <created>1753625726930</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1753625726930</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix servant rep problem">
+      <option name="closed" value="true" />
+      <created>1753625750258</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1753625750258</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +210,10 @@
     <MESSAGE value="Adding Dto's to all models" />
     <MESSAGE value="using repomix file" />
     <MESSAGE value="Completing the servant Repo + Service + controller + configuring Scalar UI + testing the project of work on not + implementing all the required stored procedures and views for the basic CRUD operations for the models" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completing the servant Repo + Service + controller + configuring Scalar UI + testing the project of work on not + implementing all the required stored procedures and views for the basic CRUD operations for the models" />
+    <MESSAGE value="implement pagination and filtering" />
+    <MESSAGE value="fix servnat repo problem" />
+    <MESSAGE value="fix servant rep problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix servant rep problem" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
